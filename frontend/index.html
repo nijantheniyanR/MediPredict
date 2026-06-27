@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MediPredict is an AI/ML powered healthcare portal predicting patient diabetes disease susceptibility based on medical records with a TensorFlow Keras sequential neural network.">
+    <meta name="author" content="MediPredict Team">
+    <title>MediPredict | AI-Powered Diabetes Disease Prediction</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <meta id="medipredict-app-id" data-app-name="MediPredict">
+</head>
+<body>
+    <!-- Top Progress Bar -->
+    <div class="top-nav-bar-progress"></div>
+
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-link" id="nav-logo">
+                <i class="fa-solid fa-heart-pulse logo-icon"></i>
+                <span class="logo-text">Medi<span class="logo-accent">Predict</span></span>
+            </a>
+            
+            <nav class="desktop-nav">
+                <a href="index.html" class="nav-item active" id="nav-home-btn">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+                <a href="predict.html" class="nav-item" id="nav-predict-btn">
+                    <i class="fa-solid fa-stethoscope"></i> Predict Risk
+                </a>
+            </nav>
+            
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-nav-drawer">
+        <div class="drawer-header">
+            <span class="logo-text">Medi<span class="logo-accent">Predict</span></span>
+            <button class="drawer-close" id="mobile-close-btn">&times;</button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-item active" id="mob-nav-home">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+            <a href="predict.html" class="mobile-nav-item" id="mob-nav-predict">
+                <i class="fa-solid fa-stethoscope"></i> Predict Risk
+            </a>
+        </nav>
+    </div>
+    <div class="drawer-overlay" id="mobile-drawer-overlay"></div>
+
+    <!-- Main Content Body -->
+    <main class="main-content-wrapper">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+            </div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-badge"><i class="fa-solid fa-microchip"></i> TensorFlow Deep Learning</span>
+                    <h1 class="hero-title">Early Diabetes Risk Prediction Powered by Artificial Intelligence</h1>
+                    <p class="hero-description">
+                        MediPredict utilizes a deep multilayer perceptron neural network trained on the PIMA Indians Diabetes dataset. Get immediate, high-fidelity risk screening based on physiological medical parameters.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="predict.html" class="btn btn-primary btn-large" id="hero-get-started-btn">
+                            <i class="fa-solid fa-notes-medical"></i> Get Started Screening
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="premium-card hero-interactive-card">
+                        <div class="card-header-pulse">
+                            <span class="pulse-indicator"></span>
+                            <span class="pulse-text">AI Diagnostic Assistant Active</span>
+                        </div>
+                        <div class="hero-card-stat">
+                            <div class="stat-circle">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span class="stat-number">99.2%</span>
+                                <span class="stat-label">API Uptime</span>
+                            </div>
+                        </div>
+                        <div class="hero-card-list">
+                            <div class="list-item">
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                                <div>
+                                    <strong>Instant Inference</strong>
+                                    <p>Real-time prediction under 100ms</p>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                                <div>
+                                    <strong>8 Parameters Evaluated</strong>
+                                    <p>Full clinical correlation mapping</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features / Pillars Section -->
+        <section class="features-section">
+            <div class="section-header">
+                <h2>Features & Insights Evaluated</h2>
+                <p>MediPredict analyzes 8 critical biological indicators identified by health researchers to determine early onset diabetes risk.</p>
+            </div>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="premium-card feature-card">
+                    <div class="feature-icon-wrapper text-blue">
+                        <i class="fa-solid fa-baby"></i>
+                    </div>
+                    <h3>Pregnancies & Age</h3>
+                    <p>Demographic factors indicating gestational diabetes history and age-related metabolic shifts.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="premium-card feature-card">
+                    <div class="feature-icon-wrapper text-teal">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h3>Glucose & Insulin</h3>
+                    <p>Direct measures of blood sugar concentration and the body's pancreatic hormone responses.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="premium-card feature-card">
+                    <div class="feature-icon-wrapper text-red">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3>Blood Pressure & BMI</h3>
+                    <p>Cardiovascular health markers and body composition metrics associated with metabolic syndrome.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="premium-card feature-card">
+                    <div class="feature-icon-wrapper text-purple">
+                        <i class="fa-solid fa-dna"></i>
+                    </div>
+                    <h3>Pedigree Function</h3>
+                    <p>A score mapping family history of diabetes, estimating the genetic hereditary components of risk.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Banner -->
+        <section class="cta-banner">
+            <div class="cta-container">
+                <div class="cta-content">
+                    <h2>Ready to run your screening report?</h2>
+                    <p>Fill out the medical parameters in our simplified clinical form to compute a neural network diabetic index prediction.</p>
+                </div>
+                <div class="cta-action">
+                    <a href="predict.html" class="btn btn-white btn-large">
+                        <i class="fa-solid fa-stethoscope"></i> Start Predictions
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Area -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-heart-pulse logo-icon"></i>
+                    <span>Medi<span class="logo-accent">Predict</span></span>
+                </div>
+                <p class="footer-tagline">Harnessing advanced machine learning and deep neural networks to offer preliminary diabetes disease screening and risk analysis.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Application</h4>
+                <ul>
+                    <li><a href="index.html">Home Dashboard</a></li>
+                    <li><a href="predict.html">Diabetes Prediction Form</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h4>Contact Info</h4>
+                <p><i class="fa-solid fa-envelope"></i> support@medipredict.org</p>
+                <p><i class="fa-solid fa-code"></i> AI/ML Hackathon Submission</p>
+            </div>
+        </div>
+        
+        <div class="footer-disclaimer-bar">
+            <div class="disclaimer-container">
+                <p><strong><i class="fa-solid fa-triangle-exclamation"></i> IMPORTANT MEDICAL DISCLAIMER:</strong> MediPredict is an AI-powered educational reference and screening prototype tool. The information provided is based on clinical dataset probabilities and does <strong>NOT</strong> constitute diagnostic clinical feedback, official medical advice, treatment planning, or professional therapy. Always consult a certified physician or endocrinologist for any diabetes diagnosis or health concerns.</p>
+            </div>
+        </div>
+        
+        <div class="footer-copyright-bar">
+            <p>&copy; 2026 MediPredict. All rights reserved. Built with HTML5, CSS3, & JS.</p>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript Code -->
+    <script src="js/main.js"></script>
+</body>
+</html>

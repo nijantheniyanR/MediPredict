@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MediPredict is an AI/ML powered healthcare portal predicting patient diabetes disease susceptibility based on medical records with a TensorFlow Keras sequential neural network.">
+    <meta name="author" content="MediPredict Team">
+    <title>MediPredict | AI-Powered Diabetes Disease Prediction</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Unique ID for browser testing -->
+    <meta id="medipredict-app-id" data-app-name="MediPredict">
+    
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Top Progress Bar (Visual Polish) -->
+    <div class="top-nav-bar-progress"></div>
+
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/" class="logo-link" id="nav-logo">
+                <i class="fa-solid fa-heart-pulse logo-icon"></i>
+                <span class="logo-text">Medi<span class="logo-accent">Predict</span></span>
+            </a>
+            
+            <nav class="desktop-nav">
+                <a href="/" class="nav-item {% if page == 'home' %}active{% endif %}" id="nav-home-btn">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+                <a href="/predict" class="nav-item {% if page == 'predict' %}active{% endif %}" id="nav-predict-btn">
+                    <i class="fa-solid fa-stethoscope"></i> Predict Risk
+                </a>
+            </nav>
+            
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-nav-drawer">
+        <div class="drawer-header">
+            <span class="logo-text">Medi<span class="logo-accent">Predict</span></span>
+            <button class="drawer-close" id="mobile-close-btn">&times;</button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="/" class="mobile-nav-item {% if page == 'home' %}active{% endif %}" id="mob-nav-home">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+            <a href="/predict" class="mobile-nav-item {% if page == 'predict' %}active{% endif %}" id="mob-nav-predict">
+                <i class="fa-solid fa-stethoscope"></i> Predict Risk
+            </a>
+        </nav>
+    </div>
+    <div class="drawer-overlay" id="mobile-drawer-overlay"></div>
+
+    <!-- Main Content Body -->
+    <main class="main-content-wrapper">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer Area -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-heart-pulse logo-icon"></i>
+                    <span>Medi<span class="logo-accent">Predict</span></span>
+                </div>
+                <p class="footer-tagline">Harnessing advanced machine learning and deep neural networks to offer preliminary diabetes disease screening and risk analysis.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Application</h4>
+                <ul>
+                    <li><a href="/">Home Dashboard</a></li>
+                    <li><a href="/predict">Diabetes Prediction Form</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h4>Contact Info</h4>
+                <p><i class="fa-solid fa-envelope"></i> support@medipredict.org</p>
+                <p><i class="fa-solid fa-code"></i> AI/ML Hackathon Submission</p>
+            </div>
+        </div>
+        
+        <div class="footer-disclaimer-bar">
+            <div class="disclaimer-container">
+                <p><strong><i class="fa-solid fa-triangle-exclamation"></i> IMPORTANT MEDICAL DISCLAIMER:</strong> MediPredict is an AI-powered educational reference and screening prototype tool. The information provided is based on clinical dataset probabilities and does <strong>NOT</strong> constitute diagnostic clinical feedback, official medical advice, treatment planning, or professional therapy. Always consult a certified physician or endocrinologist for any diabetes diagnosis or health concerns.</p>
+            </div>
+        </div>
+        
+        <div class="footer-copyright-bar">
+            <p>&copy; 2026 MediPredict. All rights reserved. Built with Flask & TensorFlow.</p>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript Code -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
