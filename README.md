@@ -204,3 +204,13 @@ Evaluates 8 clinical patient parameters and computes the classification outcome.
 
 ## ⚠️ Important Medical Disclaimer
 MediPredict is a technology demonstrator and screening prototype. It calculates statistical probabilities based on a historical study cohort (PIMA Indians Dataset). The results provided by this application are **NOT** official medical diagnoses, clinical feedback, treatment recommendations, or therapeutic prescriptions. Always seek advice from a qualified medical doctor or endocrinologist for clinical assessments and treatment plans.
+## Screenshots
+
+### Home Page
+![Home](screenshots/home.png)
+
+### Prediction Form
+![Prediction Form](screenshots/predict.png)
+
+### Prediction Result
+![Prediction Result](screenshots/result.png)
