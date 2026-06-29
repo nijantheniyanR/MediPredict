@@ -101,12 +101,16 @@ ipython_config.py
 
 # virtualenv
 .env
+.env.local
 .venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Vercel
+.vercel/
 
 # IDE / Editors
 .vscode/
