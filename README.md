@@ -1,8 +1,10 @@
 # MediPredict: AI-Powered Diabetes Disease Prediction
 
-[![Hugging Face Spaces](https://img.shields.io/badge/Deploy-Hugging%20Face-blue?logo=huggingface)](https://huggingface.co/spaces/<your-username>/MediPredict)
+[![Hugging Face Spaces](https://img.shields.io/badge/Deploy-Hugging%20Face-blue?logo=huggingface)](https://huggingface.co/spaces/nijantheniyanR/Medipredict)
 
-MediPredict is a complete, production-quality medical risk screening application that utilizes machine learning and deep learning to predict whether a patient is likely to have diabetes based on critical physiological markers. 
+MediPredict is a complete, production-quality medical risk screening application that utilizes machine learning and deep learning to predict whether a patient is likely to have diabetes based on critical physiological markers.
+
+This repository is now adapted for Hugging Face Spaces using Gradio.
 
 Built for AI/ML hackathons and medical informatics prototypes, the application features a modern, responsive user interface and a dual-mode Flask backend that integrates a TensorFlow deep neural network with a fallback calibration engine.
 
