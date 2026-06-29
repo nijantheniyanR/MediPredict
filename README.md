@@ -4,9 +4,18 @@
 
 MediPredict is a complete, production-quality medical risk screening application that utilizes machine learning and deep learning to predict whether a patient is likely to have diabetes based on critical physiological markers.
 
-This repository is now adapted for Hugging Face Spaces using Gradio.
+This repository is now adapted for Hugging Face Spaces using Flask.
 
 Built for AI/ML hackathons and medical informatics prototypes, the application features a modern, responsive user interface and a dual-mode Flask backend that integrates a TensorFlow deep neural network with a fallback calibration engine.
+
+## Hugging Face Spaces deployment
+
+For Hugging Face Spaces, use the following settings:
+- App entrypoint: python app.py
+- Port: 5000
+- Runtime: Python
+
+The repository includes [app.yaml](app.yaml) as a simple deployment hint for the Space.
 
 ---
 
