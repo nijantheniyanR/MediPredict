@@ -1,5 +1,7 @@
 # MediPredict: AI-Powered Diabetes Disease Prediction
 
+[![Hugging Face Spaces](https://img.shields.io/badge/Deploy-Hugging%20Face-blue?logo=huggingface)](https://huggingface.co/spaces/<your-username>/MediPredict)
+
 MediPredict is a complete, production-quality medical risk screening application that utilizes machine learning and deep learning to predict whether a patient is likely to have diabetes based on critical physiological markers. 
 
 Built for AI/ML hackathons and medical informatics prototypes, the application features a modern, responsive user interface and a dual-mode Flask backend that integrates a TensorFlow deep neural network with a fallback calibration engine.
@@ -100,6 +102,25 @@ Execute the training script to fetch the PIMA Indians dataset, perform cleaning,
 ```bash
 python train_model.py
 ```
+
+### 5. Deploy on Hugging Face Spaces
+Hugging Face Spaces can host this app using the included `Dockerfile`.
+
+1. Push your repository to GitHub or another Git provider.
+2. Create a new Space on Hugging Face and choose **Docker** as the runtime.
+3. Upload this repository or connect the GitHub repo to the Space.
+4. The Space build will use the project root `Dockerfile` and `requirements.txt`.
+
+The container starts the Flask app with Gunicorn and exposes it on port `5000`.
+
+> If you want to deploy the full app on Spaces, do not use `vercel.json`; it is only for Vercel.
+
+### 6. Launch the Application
+Start the Flask web server locally:
+```bash
+python app.py
+```
+Open a browser and navigate to: **[http://localhost:5000](http://localhost:5000)**
 *This step creates the `dataset/diabetes.csv` file, compiles `models/diabetes_model.keras` and `models/scaler.pkl`, and writes visual heatmaps to `static/images/`.*
 
 ### 5. Launch the Application
@@ -204,6 +225,7 @@ Evaluates 8 clinical patient parameters and computes the classification outcome.
 
 ## ⚠️ Important Medical Disclaimer
 MediPredict is a technology demonstrator and screening prototype. It calculates statistical probabilities based on a historical study cohort (PIMA Indians Dataset). The results provided by this application are **NOT** official medical diagnoses, clinical feedback, treatment recommendations, or therapeutic prescriptions. Always seek advice from a qualified medical doctor or endocrinologist for clinical assessments and treatment plans.
+
 ## Screenshots
 
 ### Home Page
@@ -214,3 +236,31 @@ MediPredict is a technology demonstrator and screening prototype. It calculates 
 
 ### Prediction Result
 ![Prediction Result](screenshots/result.png)
+
+## Running the TensorFlow Model Server (Optional)
+
+If your deployment target (e.g., Vercel) does not support TensorFlow, you can run a separate TensorFlow-capable model server locally or on a TF-capable host and point the Flask app to it.
+
+1. Start the model server locally (from project root):
+
+```bash
+cd model_server
+pip install -r requirements.txt
+uvicorn model_server.main:app --host 0.0.0.0 --port 8000
+```
+
+2. In a separate terminal, set the `MODEL_SERVER_URL` env var and start the main app:
+
+```bash
+set MODEL_SERVER_URL=http://localhost:8000
+python app.py
+```
+
+3. The frontend will now forward prediction requests to the TF-capable model server when the local model binary is not loaded. You can also build the Docker image for the model server:
+
+```bash
+docker build -t medipredict-model-server -f model_server/Dockerfile .
+docker run -p 8000:8000 medipredict-model-server
+```
+
+Note: TensorFlow images and builds can be large. Use a TF-capable hosting option (GCP, AWS, Azure, or a VM) for production deployments.

@@ -2,8 +2,12 @@ import os
 import json
 from flask import Flask, render_template, request, jsonify
 from backend.predictor import DiabetesPredictor
+import requests
 
 app = Flask(__name__)
+
+# Optional remote model server URL (e.g. http://tf-server.example.com)
+MODEL_SERVER_URL = os.environ.get('MODEL_SERVER_URL')
 
 # Initialize Predictor
 predictor = DiabetesPredictor()
@@ -76,6 +80,7 @@ def health():
         'app_name': 'MediPredict',
         'tensorflow_model_loaded': predictor.is_tf_loaded,
         'fallback_mode': not predictor.is_tf_loaded,
+        'load_error': getattr(predictor, 'load_error', None),
         'model_metrics_available': not is_default,
         'metrics': metrics
     })
@@ -167,8 +172,26 @@ def predict_api():
                 'error': 'Validation failed',
                 'validation_errors': errors
             }), 400
-            
-        # Run prediction
+        
+        # If local TF/scikit model is not loaded but a remote model server is configured,
+        # forward the validated payload to the remote server and return its response.
+        if not predictor.is_tf_loaded and MODEL_SERVER_URL:
+            try:
+                remote_resp = requests.post(
+                    MODEL_SERVER_URL.rstrip('/') + '/api/predict',
+                    json=validated_data,
+                    timeout=5
+                )
+                if remote_resp.status_code == 200:
+                    jr = remote_resp.json()
+                    # If remote succeeded, forward it
+                    if jr.get('success'):
+                        return jsonify(jr)
+                # If remote failed or returned non-200, fall back to local heuristic
+            except Exception as e:
+                print(f"[MediPredict] Error forwarding to remote model server: {e}")
+
+        # Run prediction (local predictor may fall back to heuristic)
         res = predictor.predict(validated_data)
         
         prediction = int(res['prediction'])

@@ -15,6 +15,7 @@ class DiabetesPredictor:
         
         self.model = None
         self.scaler = None
+        self.load_error = None
         self.is_tf_loaded = False
         self.model_type = 'None'
         
@@ -35,9 +36,11 @@ class DiabetesPredictor:
                         self.model = tf.keras.models.load_model(self.model_path_tf)
                         self.is_tf_loaded = True
                         self.model_type = 'TensorFlow Sequential Neural Network'
+                        self.load_error = None
                         print("[MediPredict Predictor] Successfully loaded TensorFlow model and Scaler.")
                         return
                     except Exception as e:
+                        self.load_error = str(e)
                         print(f"[MediPredict Predictor] Error loading TensorFlow assets: {e}")
                 
                 # Check for Scikit-Learn fallback model next
@@ -47,17 +50,22 @@ class DiabetesPredictor:
                             self.model = pickle.load(f)
                         self.is_tf_loaded = True
                         self.model_type = 'Scikit-Learn MLP Neural Network'
+                        self.load_error = None
                         print("[MediPredict Predictor] Successfully loaded Scikit-Learn MLP model and Scaler.")
                         return
                     except Exception as e:
+                        self.load_error = str(e)
                         print(f"[MediPredict Predictor] Error loading Scikit-Learn assets: {e}")
                 
+                self.load_error = 'Model binary file not found.'
                 print("[MediPredict Predictor] Model binary file not found.")
                 self.is_tf_loaded = False
             except Exception as e:
+                self.load_error = str(e)
                 print(f"[MediPredict Predictor] Error loading assets: {e}")
                 self.is_tf_loaded = False
         else:
+            self.load_error = 'Scaler file not found.'
             print("[MediPredict Predictor] Scaler file not found.")
             print("[MediPredict Predictor] Run 'python train_model.py' to generate model assets.")
             print("[MediPredict Predictor] Running in Heuristic Fallback mode.")
